@@ -7,6 +7,7 @@ class Fpocket2 < Formula
 
   def install
     system "sed -i 's/\$(LFLAGS) \$\^ -o \$@/\$\^ -o \$@ \$(LFLAGS)/g' makefile" if OS.linux?
+    system "sed -i '' 's/-Wstrict-prototypes/-Wwrite-strings  -Wno-implicit-function-declaration/g' makefile"
     system "make"
     bin.install Dir["bin/*pocket"]
     bin.install "bin/pcheck"
